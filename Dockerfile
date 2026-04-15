@@ -1,25 +1,33 @@
-# Step 1: Build frontend
-FROM node:18 AS frontend
+# ---------- FRONTEND ----------
+FROM node:20 AS frontend
 
 WORKDIR /app/frontend
+
 COPY frontend/package*.json ./
 RUN npm install
+
 COPY frontend .
 RUN npm run build
 
-# Step 2: Backend
+# ---------- BACKEND ----------
 FROM python:3.11
 
 WORKDIR /app
 
+# Install backend deps
 COPY backend/requirements.txt .
 RUN pip install --no-cache-dir -r requirements.txt
 
+# Copy backend
 COPY backend .
 
-# Copy built frontend into backend
-COPY --from=frontend /app/frontend/.next ./frontend/.next
+# Copy frontend build + node_modules
+COPY --from=frontend /app/frontend ./
+
+# Install Node in final image
+RUN apt-get update && apt-get install -y nodejs npm
 
 EXPOSE 8080
 
-CMD ["uvicorn", "main:app", "--host", "0.0.0.0", "--port", "8080"]
+# Run BOTH frontend + backend
+CMD sh -c "uvicorn main:app --host 0.0.0.0 --port 8000 & npm run start -- --port 8080"
