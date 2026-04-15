@@ -1,0 +1,7 @@
+node_modules/
+.next/
+__pycache__/
+.env
+.env.local
+production_artifacts/
+*.log
