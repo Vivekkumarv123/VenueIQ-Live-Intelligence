@@ -51,8 +51,7 @@ The frontend polls the backend `/api/v2/inference/tick` endpoint every 5 seconds
 
 | Crowd Heatmap UI & Predictive Intelligence Panel |
 |---|---|
-| ![Heatmap placeholder & Intelligence panel placeholder](<img width="1911" height="919" alt="image" src="https://github.com/user-attachments/assets/a0628f6e-2add-4268-aad8-03fc8d793504" />
-) |
+| ![Heatmap placeholder & Intelligence panel placeholder] (<img width="1911" height="919" alt="image" src="https://github.com/user-attachments/assets/a0628f6e-2add-4268-aad8-03fc8d793504" />) |
 
 ---
 
