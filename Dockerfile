@@ -19,7 +19,6 @@ COPY backend .
 
 # Copy built frontend into backend
 COPY --from=frontend /app/frontend/.next ./frontend/.next
-COPY --from=frontend /app/frontend/public ./frontend/public
 
 EXPOSE 8080
 
